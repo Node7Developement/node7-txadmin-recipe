@@ -2,6 +2,13 @@
 NODE7 REDM TXADMIN RECIPE
 =========================
 
+
+
+
+
+
+<img width="1672" height="941" alt="BrandBanner" src="https://github.com/user-attachments/assets/3c69f002-c729-4751-8baf-8d59fd05d234" />
+
 Official txAdmin deployment recipe for the NODE7 RedM Framework.
 
 Developed by NODE7 Development Studios.
