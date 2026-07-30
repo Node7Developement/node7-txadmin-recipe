@@ -1,0 +1,344 @@
+$engine: 3
+$onesync: on
+
+name: NODE7 RedM Server
+version: 1.1.0
+author: NODE7 Development Studios
+description: Complete NODE7 RedM framework recipe with configuration, database, dependencies, and all public NODE7 resources.
+
+tasks:
+  # Download this recipe repository. The GitHub repository must be flat.
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-txadmin-recipe
+    ref: main
+    dest: ./tmp/NODE7
+
+  - action: move_path
+    src: ./tmp/NODE7/server.cfg
+    dest: ./server.cfg
+    overwrite: true
+
+  - action: move_path
+    src: ./tmp/NODE7/permissions.cfg
+    dest: ./permissions.cfg
+    overwrite: true
+
+  # Database selected in txAdmin.
+  - action: connect_database
+
+  - action: query_database
+    file: ./tmp/NODE7/database/node7_core.sql
+
+  # Official CFX RedM resources.
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    ref: master
+    subpath: resources
+    dest: ./resources/[cfx-default]
+
+  - action: remove_path
+    path: ./resources/[cfx-default]/[gameplay]/chat
+
+  # Built oxmysql release.
+  - action: download_file
+    path: ./tmp/files/oxmysql.zip
+    url: https://github.com/CommunityOx/oxmysql/releases/latest/download/oxmysql.zip
+
+  - action: unzip
+    src: ./tmp/files/oxmysql.zip
+    dest: ./resources/[standalone]
+
+  # NODE7 dependencies and resources.
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-console-brand
+    ref: main
+    subpath: node7-console-brand
+    dest: ./resources/[node7]/node7-console-brand
+
+  - action: download_github
+    src: https://github.com/Node7Developement/ox_lib
+    ref: main
+    subpath: ox_lib
+    dest: ./resources/[standalone]/ox_lib
+
+  - action: download_github
+    src: https://github.com/Node7Developement/progressbar
+    ref: main
+    subpath: progressbar
+    dest: ./resources/[standalone]/progressbar
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-core
+    ref: main
+    subpath: node7-core
+    dest: ./resources/[node7]/node7-core
+
+  - action: download_github
+    src: https://github.com/Node7Developement/ox_target
+    ref: main
+    subpath: ox_target
+    dest: ./resources/[standalone]/ox_target
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-connect
+    ref: main
+    subpath: node7-connect
+    dest: ./resources/[node7]/node7-connect
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-input
+    ref: main
+    subpath: node7-input
+    dest: ./resources/[node7]/node7-input
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-menu-base
+    ref: main
+    subpath: node7-menu-base
+    dest: ./resources/[node7]/node7-menu-base
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-interaction
+    ref: main
+    subpath: node7-interaction
+    dest: ./resources/[node7]/node7-interaction
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-inventory
+    ref: main
+    subpath: node7-inventory
+    dest: ./resources/[node7]/node7-inventory
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-cashitem
+    ref: main
+    subpath: node7-cashitem
+    dest: ./resources/[node7]/node7-cashitem
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-banking
+    ref: main
+    subpath: node7-banking
+    dest: ./resources/[node7]/node7-banking
+
+  - action: waste_time # reduce GitHub throttling
+    seconds: 10
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-bankdoors
+    ref: main
+    subpath: node7-bankdoors
+    dest: ./resources/[node7]/node7-bankdoors
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-weapons
+    ref: main
+    subpath: node7-weapons
+    dest: ./resources/[node7]/node7-weapons
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-ammo
+    ref: main
+    subpath: node7-ammo
+    dest: ./resources/[node7]/node7-ammo
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-horses
+    ref: main
+    subpath: node7-horses
+    dest: ./resources/[node7]/node7-horses
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-skins
+    ref: main
+    subpath: node7-skins
+    dest: ./resources/[node7]/node7-skins
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-appearance
+    ref: main
+    subpath: node7-appearance
+    dest: ./resources/[node7]/node7-appearance
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-wardrobe
+    ref: main
+    subpath: node7-wardrobe
+    dest: ./resources/[node7]/node7-wardrobe
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-clothing
+    ref: main
+    subpath: node7-clothing
+    dest: ./resources/[node7]/node7-clothing
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-barbershop
+    ref: main
+    subpath: node7-barbershop
+    dest: ./resources/[node7]/node7-barbershop
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-charselect
+    ref: main
+    subpath: node7-charselect
+    dest: ./resources/[node7]/node7-charselect
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-drawtext
+    ref: main
+    subpath: node7-drawtext
+    dest: ./resources/[node7]/node7-drawtext
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-timehud
+    ref: main
+    subpath: node7-timehud
+    dest: ./resources/[node7]/node7-timehud
+
+  - action: waste_time # reduce GitHub throttling
+    seconds: 10
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-hud
+    ref: main
+    subpath: node7-hud
+    dest: ./resources/[node7]/node7-hud
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-playerlist
+    ref: main
+    subpath: node7-playerlist
+    dest: ./resources/[node7]/node7-playerlist
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-mail
+    ref: main
+    subpath: node7-mail
+    dest: ./resources/[node7]/node7-mail
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-directory
+    ref: main
+    subpath: node7-directory
+    dest: ./resources/[node7]/node7-directory
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-jobcenter
+    ref: main
+    subpath: node7-jobcenter
+    dest: ./resources/[node7]/node7-jobcenter
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-pausemenu
+    ref: main
+    subpath: node7-pausemenu
+    dest: ./resources/[node7]/node7-pausemenu
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-radialmenu
+    ref: main
+    subpath: node7-radialmenu
+    dest: ./resources/[node7]/node7-radialmenu
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-consumeables
+    ref: main
+    subpath: node7-consumeables
+    dest: ./resources/[node7]/node7-consumeables
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-shop-catalogue
+    ref: main
+    subpath: node7-shop-catalogue
+    dest: ./resources/[node7]/node7-shop-catalogue
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-gun-catalogue
+    ref: main
+    subpath: node7-gun-catalogue
+    dest: ./resources/[node7]/node7-gun-catalogue
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-admincoords
+    ref: main
+    subpath: node7-admincoords
+    dest: ./resources/[node7]/node7-admincoords
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-density
+    ref: main
+    subpath: node7-density
+    dest: ./resources/[node7]/node7-density
+
+  - action: waste_time # reduce GitHub throttling
+    seconds: 10
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-npc-nospeak
+    ref: main
+    subpath: node7-npc-nospeak
+    dest: ./resources/[node7]/node7-npc-nospeak
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-lockpick-minigame-
+    ref: main
+    subpath: node7-lockpick-minigame
+    dest: ./resources/[node7]/node7-lockpick-minigame
+
+  - action: download_github
+    src: https://github.com/Node7Developement/realistic-break-out-for-handcuffs-minigame-and-UI
+    ref: main
+    subpath: node7-handcuff-minigame
+    dest: ./resources/[node7]/node7-handcuff-minigame
+
+  - action: download_github
+    src: https://github.com/Node7Developement/ox_doorlock
+    ref: main
+    dest: ./resources/[standalone]/ox_doorlock
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-handcuffs
+    ref: main
+    subpath: node7-handcuffs
+    dest: ./resources/[node7]/node7-handcuffs
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-skills-
+    ref: main
+    subpath: node7-skills
+    dest: ./resources/[node7]/node7-skills
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-dispatch
+    ref: main
+    subpath: node7-dispatch
+    dest: ./resources/[node7]/node7-dispatch
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-lawmen
+    ref: main
+    subpath: node7-lawmen
+    dest: ./resources/[node7]/node7-lawmen
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-robbing
+    ref: main
+    subpath: node7-robbing
+    dest: ./resources/[node7]/node7-robbing
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-ambienttrains
+    ref: main
+    subpath: node7-ambienttrains
+    dest: ./resources/[node7]/node7-ambienttrains
+
+  - action: download_github
+    src: https://github.com/Node7Developement/node7-trains-Conductor-job-
+    ref: main
+    subpath: node7-trains
+    dest: ./resources/[node7]/node7-trains
+
+  # Cleanup temporary deployment files.
+  - action: remove_path
+    path: ./tmp
