@@ -2,32 +2,29 @@ $engine: 3
 $onesync: on
 
 name: NODE7 RedM Server
-version: 1.1.0
+version: 1.1.1
 author: NODE7 Development Studios
 description: Complete NODE7 RedM framework recipe with configuration, database, dependencies, and all public NODE7 resources.
 
 tasks:
-  # Download this recipe repository. The GitHub repository must be flat.
-  - action: download_github
-    src: https://github.com/Node7Developement/node7-txadmin-recipe
-    ref: main
-    dest: ./tmp/NODE7
+  # Install the recipe files directly. This avoids repository wrapper-folder path failures.
+  - action: download_file
+    url: https://raw.githubusercontent.com/Node7Developement/node7-txadmin-recipe/main/node7-txadmin-recipe/server.cfg
+    path: ./server.cfg
 
-  - action: move_path
-    src: ./tmp/NODE7/server.cfg
-    dest: ./server.cfg
-    overwrite: true
+  - action: download_file
+    url: https://raw.githubusercontent.com/Node7Developement/node7-txadmin-recipe/main/node7-txadmin-recipe/permissions.cfg
+    path: ./permissions.cfg
 
-  - action: move_path
-    src: ./tmp/NODE7/permissions.cfg
-    dest: ./permissions.cfg
-    overwrite: true
+  - action: download_file
+    url: https://raw.githubusercontent.com/Node7Developement/node7-txadmin-recipe/main/node7-txadmin-recipe/database/node7_core.sql
+    path: ./tmp/node7_core.sql
 
   # Database selected in txAdmin.
   - action: connect_database
 
   - action: query_database
-    file: ./tmp/NODE7/database/node7_core.sql
+    file: ./tmp/node7_core.sql
 
   # Official CFX RedM resources.
   - action: download_github
